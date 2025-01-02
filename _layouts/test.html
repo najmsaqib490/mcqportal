@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.category }} - MCQ Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .test-container { margin: 20px; }
+    .question { margin: 10px 0; font-weight: bold; }
+    .options { margin: 5px 0; }
+    .options input { margin-right: 10px; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    .progress-bar { width: 100%; background-color: #f3f3f3; }
+    .progress-bar-inner { height: 20px; background-color: #4caf50; width: 0%; text-align: center; color: white; }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>{{ page.category }} - Test</h1>
+    
+    <div class="progress">
+      <div class="progress-bar">
+        <div class="progress-bar-inner" id="progress-bar"></div>
+      </div>
+      <p>Question <span id="current-question">1</span> of <span id="total-questions">{{ site.data[page.test_file].questions | size }}</span></p>
+    </div>
+    
+    <div class="questions">
+      {% assign test_data = site.data[page.test_file] %}
+      <div id="questions-container">
+        {% for question in test_data.questions %}
+          <div class="question" id="question-{{ forloop.index }}">
+            <p>{{ question.question }}</p>
+            <div class="options">
+              {% for option in question.options %}
+                <label>
+                  <input type="radio" name="q{{ forloop.index }}" value="{{ option }}" onclick="checkAnswer('{{ forloop.index }}', '{{ option }}', '{{ question.answer }}')">
+                  {{ option }}
+                </label><br>
+              {% endfor %}
+            </div>
+            <div class="feedback" id="feedback-{{ forloop.index }}"></div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <button id="submit-button" onclick="finishTest()">Submit</button>
+    
+    <div id="score-container" style="display:none;">
+      <h3>Your Score: <span id="final-score">0</span> / <span id="total-questions-count">{{ site.data[page.test_file].questions | size }}</span></h3>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestionIndex = 1;
+    let totalQuestions = {{ site.data[page.test_file].questions | size }};
+    let score = 0;
+
+    function updateProgressBar() {
+      const progress = (currentQuestionIndex / totalQuestions) * 100;
+      document.getElementById("progress-bar").style.width = progress + "%";
+      document.getElementById("current-question").textContent = currentQuestionIndex;
+    }
+
+    function checkAnswer(questionIndex, selectedAnswer, correctAnswer) {
+      const feedbackElement = document.getElementById("feedback-" + questionIndex);
+      const radioButtons = document.getElementsByName("q" + questionIndex);
+      
+      if (selectedAnswer === correctAnswer) {
+        score++;
+        feedbackElement.textContent = "Correct!";
+        feedbackElement.className = "feedback correct";
+      } else {
+        feedbackElement.textContent = "Incorrect!";
+        feedbackElement.className = "feedback incorrect";
+      }
+
+      // Disable further selections for the current question
+      radioButtons.forEach(button => {
+        button.disabled = true;
+      });
+
+      // Move to the next question
+      if (currentQuestionIndex < totalQuestions) {
+        currentQuestionIndex++;
+        updateProgressBar();
+      }
+    }
+
+    function finishTest() {
+      // Show final score
+      document.getElementById("final-score").textContent = score;
+      document.getElementById("score-container").style.display = "block";
+      document.getElementById("submit-button").disabled = true;
+
+      // Hide the question section after submission
+      document.getElementById("questions-container").style.display = "none";
+    }
+
+    updateProgressBar();
+  </script>
+</body>
+</html>
