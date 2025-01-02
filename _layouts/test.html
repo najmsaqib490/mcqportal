@@ -68,9 +68,6 @@
     }
 
     function showNextQuestion() {
-      // Hide the current question
-      document.getElementById("question-" + (currentQuestionIndex - 1)).style.display = "none";
-      
       // Show the next question
       document.getElementById("question-" + currentQuestionIndex).style.display = "block";
       
@@ -96,8 +93,12 @@
         button.disabled = true;
       });
 
-      // Show the next question after 1 second (allowing feedback to be visible)
+      // Hide current question after feedback (1 second)
       setTimeout(function() {
+        // Hide the current question
+        document.getElementById("question-" + questionIndex).style.display = "none";
+        
+        // Show the next question if there are more
         if (currentQuestionIndex < totalQuestions) {
           currentQuestionIndex++;
           showNextQuestion();
