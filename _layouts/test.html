@@ -79,6 +79,7 @@
       const feedbackElement = document.getElementById("feedback-" + questionIndex);
       const radioButtons = document.getElementsByName("q" + questionIndex);
       
+      // Show feedback
       if (selectedAnswer === correctAnswer) {
         score++;
         feedbackElement.textContent = "Correct!";
@@ -88,12 +89,12 @@
         feedbackElement.className = "feedback incorrect";
       }
 
-      // Disable all radio buttons for the current question
+      // Disable all radio buttons for the current question after answer is selected
       radioButtons.forEach(button => {
         button.disabled = true;
       });
 
-      // Hide current question after feedback (1 second)
+      // Proceed to the next question after 1 second
       setTimeout(function() {
         // Hide the current question
         document.getElementById("question-" + questionIndex).style.display = "none";
@@ -103,7 +104,8 @@
           currentQuestionIndex++;
           showNextQuestion();
         } else {
-          document.getElementById("submit-button").style.display = "block";  // Show submit button at the end
+          // Show the submit button if it's the last question
+          document.getElementById("submit-button").style.display = "block";
         }
       }, 1000);
     }
