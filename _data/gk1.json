@@ -1,0 +1,16 @@
+{
+  "category": "General Knowledge",
+  "test_id": 1,
+  "questions": [
+    {
+      "question": "What is the capital of France?",
+      "options": ["Paris", "London", "Berlin", "Madrid"],
+      "answer": "Paris"
+    },
+    {
+      "question": "Who is the current President of the USA?",
+      "options": ["Joe Biden", "Barack Obama", "Donald Trump", "George Bush"],
+      "answer": "Joe Biden"
+    }
+  ]
+}
