@@ -3,14 +3,79 @@
   "test_id": 1,
   "questions": [
     {
-      "question": "What is the capital of France?",
-      "options": ["Paris", "London", "Berlin", "Madrid"],
-      "answer": "Paris"
+     "question": "Most of the weather phenomena take place in which of the following layers of the atmosphere?",
+      "options": ["Mesosphere", "Ionosphere", "Stratosphere", "Troposphere"],
+      "correctAnswer": "Troposphere"
     },
     {
-      "question": "Who is the current President of the USA?",
-      "options": ["Joe Biden", "Barack Obama", "Donald Trump", "George Bush"],
-      "answer": "Joe Biden"
+      "question": "Koh-e-Sultan is an ancient extinct volcano in Balochistan. It is in:",
+      "options": ["Chaghai", "Quetta", "Turbat", "Kohlu", "Kila Abdullah"],
+      "correctAnswer": "Chaghai"
+    },
+    {
+      "question": "Sulphur is formed & found at:",
+      "options": ["Koh-e-Sultan", "Koh-e-Dalli", "Koh-e-Chiltan", "Koh-e-Mehdi"],
+      "correctAnswer": "Koh-e-Chiltan"
+    },
+    {
+      "question": "The line that separates day and night sides on Earth is called:",
+      "options": ["Terminator", "Separator", "Equator", "Fault Line"],
+      "correctAnswer": "Terminator"
+    },
+    {
+      "question": "The best time to study when our brain functions 100%:",
+      "options": ["4 am to 6 am", "5 am to 8 pm", "8 pm to 4 am", "2 pm to 6 pm"],
+      "correctAnswer": "4 am to 6 am"
+    },
+    {
+      "question": "Which organization declares Pakistan 'family station' for its international staff?",
+      "options": ["United Nations", "African Union", "European Union", "None of These"],
+      "correctAnswer": "United Nations"
+    },
+    {
+      "question": "Which country helped Pakistan introduce genetically-engineered corn?",
+      "options": ["China", "United States", "United Kingdom", "None of These"],
+      "correctAnswer": "United States"
+    },
+    {
+      "question": "What grant has been approved by PM for Kamyab Jawan National Youth Development Program?",
+      "options": ["03 Billion", "100 Billion", "10 Billion", "None of These"],
+      "correctAnswer": "100 Billion"
+    },
+    {
+      "question": "Which scheme has been launched by PM Imran Khan under the poverty alleviation program?",
+      "options": ["Easy Paisa", "Ehsas", "Benazir Income Support Program", "None of These"],
+      "correctAnswer": "Ehsas"
+    },
+    {
+      "question": "Which airline resumed flights to Pakistan in June 2019 after 10 years?",
+      "options": ["British Airways", "Qatar Airways", "New York Airways", "Blue Air"],
+      "correctAnswer": "British Airways"
+    },
+    {
+      "question": "Pakistan will receive _____ billion dollars loan from IMF over 3 years:",
+      "options": ["6.2 bn Dollars", "6 bn Dollars", "6.5 bn Dollars", "5 bn Dollars"],
+      "correctAnswer": "6 bn Dollars"
+    },
+    {
+      "question": "In Budget 2019-20, what amount is allocated for Defence?",
+      "options": ["1150 bn Rupees", "100 bn Rupees", "1250 bn Rupees", "None of These"],
+      "correctAnswer": "1150 bn Rupees"
+    },
+    {
+      "question": "In Budget 2019-20, how much amount is allocated for the development of Tribal Districts?",
+      "options": ["150 bn Rupees", "100 bn Rupees", "50 bn Rupees", "None of These"],
+      "correctAnswer": "100 bn Rupees"
+    },
+    {
+      "question": "Who is the current Chairman of the Federal Board of Revenue (FBR)?",
+      "options": ["Shabbar Zaidi", "Reza Baqir", "Hammad Azhar", "Jahanzeb Khan"],
+      "correctAnswer": "Shabbar Zaidi"
+    },
+    {
+      "question": "Who is the current Governor of the State Bank of Pakistan?",
+      "options": ["Shabbar Zaidi", "Reza Baqir", "Dr. Ishrat Hussain", "Asad Umar"],
+      "correctAnswer": "Reza Baqir"
     }
   ]
 }
