@@ -20,6 +20,7 @@
   <div class="test-container">
     <h1>{{ page.category }} - Test</h1>
     
+    <!-- Progress Bar -->
     <div class="progress">
       <div class="progress-bar">
         <div class="progress-bar-inner" id="progress-bar"></div>
@@ -27,28 +28,29 @@
       <p>Question <span id="current-question">1</span> of <span id="total-questions">{{ site.data[page.test_file].questions | size }}</span></p>
     </div>
     
-    <div class="questions">
+    <!-- Questions Container -->
+    <div class="questions" id="questions-container">
       {% assign test_data = site.data[page.test_file] %}
-      <div id="questions-container">
-        {% for question in test_data.questions %}
-          <div class="question" id="question-{{ forloop.index }}">
-            <p>{{ question.question }}</p>
-            <div class="options">
-              {% for option in question.options %}
-                <label>
-                  <input type="radio" name="q{{ forloop.index }}" value="{{ option }}" onclick="checkAnswer('{{ forloop.index }}', '{{ option }}', '{{ question.answer }}')">
-                  {{ option }}
-                </label><br>
-              {% endfor %}
-            </div>
-            <div class="feedback" id="feedback-{{ forloop.index }}"></div>
+      
+      {% for question in test_data.questions %}
+        <div class="question" id="question-{{ forloop.index }}" style="display:none;">
+          <p>{{ question.question }}</p>
+          <div class="options">
+            {% for option in question.options %}
+              <label>
+                <input type="radio" name="q{{ forloop.index }}" value="{{ option }}" onclick="checkAnswer('{{ forloop.index }}', '{{ option }}', '{{ question.answer }}')">
+                {{ option }}
+              </label><br>
+            {% endfor %}
           </div>
-        {% endfor %}
-      </div>
+          <div class="feedback" id="feedback-{{ forloop.index }}"></div>
+        </div>
+      {% endfor %}
     </div>
     
-    <button id="submit-button" onclick="finishTest()">Submit</button>
+    <button id="submit-button" onclick="finishTest()" style="display:none;">Submit</button>
     
+    <!-- Score Container -->
     <div id="score-container" style="display:none;">
       <h3>Your Score: <span id="final-score">0</span> / <span id="total-questions-count">{{ site.data[page.test_file].questions | size }}</span></h3>
     </div>
@@ -63,6 +65,17 @@
       const progress = (currentQuestionIndex / totalQuestions) * 100;
       document.getElementById("progress-bar").style.width = progress + "%";
       document.getElementById("current-question").textContent = currentQuestionIndex;
+    }
+
+    function showNextQuestion() {
+      // Hide current question
+      document.getElementById("question-" + (currentQuestionIndex - 1)).style.display = "none";
+
+      // Show next question
+      document.getElementById("question-" + currentQuestionIndex).style.display = "block";
+      
+      // Update progress
+      updateProgressBar();
     }
 
     function checkAnswer(questionIndex, selectedAnswer, correctAnswer) {
@@ -83,11 +96,15 @@
         button.disabled = true;
       });
 
-      // Move to the next question
-      if (currentQuestionIndex < totalQuestions) {
-        currentQuestionIndex++;
-        updateProgressBar();
-      }
+      // Show next question after 1 second (to allow feedback to be visible)
+      setTimeout(function() {
+        if (currentQuestionIndex < totalQuestions) {
+          currentQuestionIndex++;
+          showNextQuestion();
+        } else {
+          document.getElementById("submit-button").style.display = "block";  // Show submit button at the end
+        }
+      }, 1000);
     }
 
     function finishTest() {
@@ -100,7 +117,8 @@
       document.getElementById("questions-container").style.display = "none";
     }
 
-    updateProgressBar();
+    // Start the test by showing the first question
+    showNextQuestion();
   </script>
 </body>
 </html>
